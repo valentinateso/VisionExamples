@@ -9,10 +9,16 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Text("Vision Examples")
+        NavigationStack {
+            VStack(alignment: .leading) {
+                NavigationLink(destination: TextRecognitionView(), label: { Text("OCR Text Recognition") })
+                Divider()
+                NavigationLink(destination: Text("To Do"), label: { Text("Face Recognition") })
+                Spacer()
+            }
+            .padding()
+            .navigationTitle("Vision Examples")
         }
-        .padding()
     }
 }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F449138A2B9877710003DF6B /* TextRecognitionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44913892B9877710003DF6B /* TextRecognitionView.swift */; };
 		F45E870F2B971E3A00B8A961 /* VisionExamplesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45E870E2B971E3A00B8A961 /* VisionExamplesApp.swift */; };
 		F45E87112B971E3A00B8A961 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45E87102B971E3A00B8A961 /* ContentView.swift */; };
 		F45E87132B971E3B00B8A961 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F45E87122B971E3B00B8A961 /* Assets.xcassets */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F44913892B9877710003DF6B /* TextRecognitionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognitionView.swift; sourceTree = "<group>"; };
 		F45E870B2B971E3A00B8A961 /* VisionExamples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VisionExamples.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F45E870E2B971E3A00B8A961 /* VisionExamplesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionExamplesApp.swift; sourceTree = "<group>"; };
 		F45E87102B971E3A00B8A961 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -34,6 +36,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F44913882B9877350003DF6B /* TextDetection */ = {
+			isa = PBXGroup;
+			children = (
+				F44913892B9877710003DF6B /* TextRecognitionView.swift */,
+			);
+			path = TextDetection;
+			sourceTree = "<group>";
+		};
 		F45E87022B971E3A00B8A961 = {
 			isa = PBXGroup;
 			children = (
@@ -56,6 +66,7 @@
 				F45E870E2B971E3A00B8A961 /* VisionExamplesApp.swift */,
 				F45E87102B971E3A00B8A961 /* ContentView.swift */,
 				F4A9D8642B9721DD00C53B44 /* Helper */,
+				F44913882B9877350003DF6B /* TextDetection */,
 				F45E87122B971E3B00B8A961 /* Assets.xcassets */,
 				F45E87142B971E3B00B8A961 /* Preview Content */,
 			);
@@ -149,6 +160,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4A9D8662B9721F000C53B44 /* ImagePicker.swift in Sources */,
+				F449138A2B9877710003DF6B /* TextRecognitionView.swift in Sources */,
 				F45E87112B971E3A00B8A961 /* ContentView.swift in Sources */,
 				F45E870F2B971E3A00B8A961 /* VisionExamplesApp.swift in Sources */,
 			);

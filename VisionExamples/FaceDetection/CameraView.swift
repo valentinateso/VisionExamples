@@ -113,6 +113,28 @@ struct CameraView: UIViewRepresentable {
             
             print("AVCapture session is running now....\(previewLayer.frame)")
         }
+        
+        ///Capture the video sample buffer and do the face detection
+        func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+            guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
+                print("couldn't get pixel from sample buffer")
+                return
+            }
+            
+            let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
+            let context = CIContext()
+            guard let cgImage = context.createCGImage(ciImage, from: ciImage.extent) else {
+                print("couldn't create cgImage from pixel buffer")
+                return
+            }
+            let orientation = CGImagePropertyOrientation(rawValue: UInt32(connection.videoOrientation.rawValue))!
+            let handler = VNImageRequestHandler(cgImage: cgImage, orientation: orientation, options: [:])
+            self.detectFaces(handler)
+        }
+        
+        func detectFaces(_ handler: VNImageRequestHandler) {
+            
+        }
     }
     
     func makeUIView(context: UIViewRepresentableContext<CameraView>) -> CameraView.UIViewType {

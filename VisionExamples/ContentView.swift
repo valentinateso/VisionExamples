@@ -13,15 +13,11 @@ struct ContentView: View {
             VStack(alignment: .leading) {
                 NavigationLink(destination: TextRecognitionView(), label: { Text("OCR Text Recognition") })
                 Divider()
-                NavigationLink(destination: Text("To Do"), label: { Text("Face Recognition") })
+                NavigationLink(destination: LiveFaceDetectionView(), label: { Text("Face Recognition") })
                 Spacer()
             }
             .padding()
             .navigationTitle("Vision Examples")
         }
     }
-}
-
-#Preview {
-    ContentView()
 }

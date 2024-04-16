@@ -132,8 +132,40 @@ struct CameraView: UIViewRepresentable {
             self.detectFaces(handler)
         }
         
-        func detectFaces(_ handler: VNImageRequestHandler) {
-            
+        ///Start Face detection
+        private func detectFaces(_ handler: VNImageRequestHandler) {
+            let faceDetectionRequest = VNDetectFaceRectanglesRequest(completionHandler: { (request: VNRequest, error: Error?) in
+                DispatchQueue.main.async {
+                    self.faceLayers.forEach { drawing in
+                        drawing.removeFromSuperlayer()
+                    }
+                    if let observation = request.results as? [VNFaceObservation] {
+                        self.handleFaceDetectionObservation(observation)
+                    }
+                }
+            })
+            do {
+                try handler.perform([faceDetectionRequest])
+            } catch {
+                print("face detection fail, error: \(error)")
+            }
+        }
+        
+        private func handleFaceDetectionObservation(_ observations: [VNFaceObservation]) {
+            for observation in observations {
+                if let previewLayer = self.previewLayer {
+                    let faceRectConverted = previewLayer.layerRectConverted(fromMetadataOutputRect: observation.boundingBox)
+                    let faceRectPath = CGPath(rect: faceRectConverted, transform: nil)
+                    
+                    let faceLayer = CAShapeLayer()
+                    faceLayer.path = faceRectPath
+                    faceLayer.fillColor = UIColor.clear.cgColor
+                    faceLayer.strokeColor = UIColor.green.cgColor
+                    
+                    self.faceLayers.append(faceLayer)
+                    self.layer.addSublayer(faceLayer)
+                }
+            }
         }
     }
     

@@ -13,6 +13,7 @@
 		F45E87132B971E3B00B8A961 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F45E87122B971E3B00B8A961 /* Assets.xcassets */; };
 		F45E87162B971E3B00B8A961 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F45E87152B971E3B00B8A961 /* Preview Assets.xcassets */; };
 		F4A9D8662B9721F000C53B44 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A9D8652B9721F000C53B44 /* ImagePicker.swift */; };
+		F4FAB05C2BCEBC8600061293 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FAB05B2BCEBC8600061293 /* CameraView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		F45E87122B971E3B00B8A961 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F45E87152B971E3B00B8A961 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F4A9D8652B9721F000C53B44 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		F4FAB05B2BCEBC8600061293 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +38,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F415E08C2BA335E000522E79 /* FaceDetection */ = {
+			isa = PBXGroup;
+			children = (
+				F4FAB05B2BCEBC8600061293 /* CameraView.swift */,
+			);
+			path = FaceDetection;
+			sourceTree = "<group>";
+		};
 		F44913882B9877350003DF6B /* TextDetection */ = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +76,7 @@
 				F45E870E2B971E3A00B8A961 /* VisionExamplesApp.swift */,
 				F45E87102B971E3A00B8A961 /* ContentView.swift */,
 				F4A9D8642B9721DD00C53B44 /* Helper */,
+				F415E08C2BA335E000522E79 /* FaceDetection */,
 				F44913882B9877350003DF6B /* TextDetection */,
 				F45E87122B971E3B00B8A961 /* Assets.xcassets */,
 				F45E87142B971E3B00B8A961 /* Preview Content */,
@@ -162,6 +173,7 @@
 				F4A9D8662B9721F000C53B44 /* ImagePicker.swift in Sources */,
 				F449138A2B9877710003DF6B /* TextRecognitionView.swift in Sources */,
 				F45E87112B971E3A00B8A961 /* ContentView.swift in Sources */,
+				F4FAB05C2BCEBC8600061293 /* CameraView.swift in Sources */,
 				F45E870F2B971E3A00B8A961 /* VisionExamplesApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,6 +311,7 @@
 				DEVELOPMENT_TEAM = TBVU37NRUM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -328,6 +341,7 @@
 				DEVELOPMENT_TEAM = TBVU37NRUM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

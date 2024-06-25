@@ -8,23 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		D7801F692C2AD7E700FE4C55 /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = D7801F682C2AD7E700FE4C55 /* Zip */; };
-		F43D1DD72BD90A8A006D06C2 /* VisionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43D1DD62BD90A8A006D06C2 /* VisionHelper.swift */; };
 		F45E870F2B971E3A00B8A961 /* VisionExamplesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45E870E2B971E3A00B8A961 /* VisionExamplesApp.swift */; };
 		F45E87132B971E3B00B8A961 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F45E87122B971E3B00B8A961 /* Assets.xcassets */; };
 		F45E87162B971E3B00B8A961 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F45E87152B971E3B00B8A961 /* Preview Assets.xcassets */; };
-		F4A9D8662B9721F000C53B44 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A9D8652B9721F000C53B44 /* ImagePicker.swift */; };
 		F4FAB05C2BCEBC8600061293 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FAB05B2BCEBC8600061293 /* CameraView.swift */; };
 		F4FAB05E2BCEC9B100061293 /* LiveFaceDetectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FAB05D2BCEC9B100061293 /* LiveFaceDetectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D7932A7E2C2ABDF600FDEEDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		F43D1DD62BD90A8A006D06C2 /* VisionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionHelper.swift; sourceTree = "<group>"; };
 		F45E870B2B971E3A00B8A961 /* VisionDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VisionDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F45E870E2B971E3A00B8A961 /* VisionExamplesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionExamplesApp.swift; sourceTree = "<group>"; };
 		F45E87122B971E3B00B8A961 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F45E87152B971E3B00B8A961 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		F4A9D8652B9721F000C53B44 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		F4FAB05B2BCEBC8600061293 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		F4FAB05D2BCEC9B100061293 /* LiveFaceDetectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveFaceDetectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -71,7 +67,6 @@
 			children = (
 				D7932A7E2C2ABDF600FDEEDC /* Info.plist */,
 				F45E870E2B971E3A00B8A961 /* VisionExamplesApp.swift */,
-				F4A9D8642B9721DD00C53B44 /* Helper */,
 				F415E08C2BA335E000522E79 /* FaceDetection */,
 				F45E87122B971E3B00B8A961 /* Assets.xcassets */,
 				F45E87142B971E3B00B8A961 /* Preview Content */,
@@ -85,15 +80,6 @@
 				F45E87152B971E3B00B8A961 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		F4A9D8642B9721DD00C53B44 /* Helper */ = {
-			isa = PBXGroup;
-			children = (
-				F4A9D8652B9721F000C53B44 /* ImagePicker.swift */,
-				F43D1DD62BD90A8A006D06C2 /* VisionHelper.swift */,
-			);
-			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -172,8 +158,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4A9D8662B9721F000C53B44 /* ImagePicker.swift in Sources */,
-				F43D1DD72BD90A8A006D06C2 /* VisionHelper.swift in Sources */,
 				F4FAB05C2BCEBC8600061293 /* CameraView.swift in Sources */,
 				F45E870F2B971E3A00B8A961 /* VisionExamplesApp.swift in Sources */,
 				F4FAB05E2BCEC9B100061293 /* LiveFaceDetectionView.swift in Sources */,

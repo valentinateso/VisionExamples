@@ -14,6 +14,7 @@ struct CameraView: UIViewRepresentable {
     typealias UIViewType = VideoPreview
     @Binding var startCamera: Bool
     @Binding var csvFile: URL?
+    @Binding var movFile: URL?
     let frame: CGRect
     
     class VideoPreview: UIView, AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureFileOutputRecordingDelegate {
@@ -35,6 +36,8 @@ struct CameraView: UIViewRepresentable {
         private var faceLayers: [CAShapeLayer] = []
         
         var movieOutput = AVCaptureMovieFileOutput()
+        
+        var movieFileUrl: URL? = nil
         
         var csvFileUrl: URL? = nil
         var startTime: Double? = nil
@@ -178,15 +181,20 @@ struct CameraView: UIViewRepresentable {
                 let paths = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
                 
                 let timestamp = NSDate.timeIntervalSinceReferenceDate
-                let movieFileUrl = paths[0].appendingPathComponent("output-\(timestamp).mov")
-                try? fileManager.removeItem(at: movieFileUrl)
+                self.movieFileUrl = paths[0].appendingPathComponent("output-\(timestamp).mov")
+                if let movieFileUrl = self.movieFileUrl {
+                    try? fileManager.removeItem(at: movieFileUrl)
+                }
                 
                 self.csvFileUrl = paths[0].appendingPathComponent("output-\(timestamp).csv")
                 if let csvFileUrl = self.csvFileUrl {
                     try? fileManager.removeItem(at: csvFileUrl)
                 }
                 
-                self.movieOutput.startRecording(to: movieFileUrl, recordingDelegate: self)
+                if let movieFileUrl = self.movieFileUrl {
+                    self.movieOutput.startRecording(to: movieFileUrl, recordingDelegate: self)
+                }
+                
                 if let csvFileUrl = self.csvFileUrl {
                     self.startTime = self.session?.synchronizationClock?.time.seconds
                     self.appendLineToURL(fileURL: csvFileUrl, line: "timestamp,yaw,pitch,roll")
@@ -236,7 +244,6 @@ struct CameraView: UIViewRepresentable {
         }
         
         private func handleFaceDetectionObservation(_ observations: [VNFaceObservation]) {
-            print("OBSERVATIONS: \(observations.count)")
             
             let offset = ((self.session?.synchronizationClock?.time.seconds ?? -1.0) - (self.startTime ?? 0.0))
             
@@ -281,6 +288,7 @@ struct CameraView: UIViewRepresentable {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.27) {
             videoPreview.checkCameraPermission()
             self.csvFile = videoPreview.csvFileUrl
+            self.movFile = videoPreview.movieFileUrl
         }
         return videoPreview
     }
@@ -291,6 +299,7 @@ struct CameraView: UIViewRepresentable {
             DispatchQueue.global(qos: .background).async {
                 _ = startCamera ? uiView.startSession() : uiView.stopSession()
                 self.csvFile = uiView.csvFileUrl
+                self.movFile = uiView.movieFileUrl
             }
         }
     }

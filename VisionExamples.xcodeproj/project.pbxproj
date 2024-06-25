@@ -318,6 +318,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VisionExamples/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = VisionDemo;
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Saving video";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -350,6 +351,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VisionExamples/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = VisionDemo;
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Saving video";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

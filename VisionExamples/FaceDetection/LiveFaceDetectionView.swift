@@ -55,7 +55,7 @@ struct LiveFaceDetectionView: View {
                     }
                     .buttonStyle(PlayButton())
                     
-                    if let csvFile = csvFile, let movFile = movFile {
+                    if let csvFile = csvFile, let movFile = movFile, !startCamera {
                         HStack {
                             ShareLink("Share", item: zip(files: [csvFile, movFile], name: csvFile.lastPathComponent.replacingOccurrences(of: ".csv", with: "")) ?? csvFile)
                                 .buttonStyle(GrowingButton())

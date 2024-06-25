@@ -20,10 +20,7 @@ struct CameraView: UIViewRepresentable {
     class VideoPreview: UIView, AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureFileOutputRecordingDelegate {
         
         func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: (any Error)?) {
-            print("FINISHED \(error?.localizedDescription ?? "NO ERR")")
-            if error == nil {
-                UISaveVideoAtPathToSavedPhotosAlbum(outputFileURL.path(), nil, nil, nil)
-            }
+            print("Finish capturing video, Error: \(error?.localizedDescription ?? "None")")
         }
         
         ///Camera Session

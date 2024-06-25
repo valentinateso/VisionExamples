@@ -8,23 +8,11 @@
 import SwiftUI
 import Zip
 
-struct GrowingButton: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .padding()
-            .background(.yellow)
-            .foregroundStyle(.black)
-            .clipShape(Capsule())
-            .scaleEffect(configuration.isPressed ? 1.2 : 1)
-            .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
-    }
-}
-
 struct PlayButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding(3)
-            .background(.yellow)
+            .background(.accent)
             .foregroundStyle(.black)
             .clipShape(Capsule())
             .scaleEffect(configuration.isPressed ? 1.2 : 1)
@@ -58,26 +46,29 @@ struct LiveFaceDetectionView: View {
                     if let csvFile = csvFile, let movFile = movFile, !startCamera {
                         HStack {
                             ShareLink("Share", item: zip(files: [csvFile, movFile], name: csvFile.lastPathComponent.replacingOccurrences(of: ".csv", with: "")) ?? csvFile)
-                                .buttonStyle(GrowingButton())
                             
-                            Button {
-                                moving = true
-                            } label: {
-                                HStack {
-                                    Image(systemName: "square.and.arrow.down")
-                                    Text("Save csv file localy")
-                                }
-                            }
-                            .fileMover(isPresented: $moving, file: csvFile) { result in
-                                switch result {
-                                case .success(let file):
-                                    print(file.absoluteString)
-                                case .failure(let error):
-                                    print(error.localizedDescription)
-                                }
-                            }
-                            .buttonStyle(GrowingButton())
+                            Spacer()
+                            
+//                            Button {
+//                                moving = true
+//                                UISaveVideoAtPathToSavedPhotosAlbum(movFile.path(), nil, nil, nil)
+//                            } label: {
+//                                HStack {
+//                                    Text("Save localy")
+//                                    Image(systemName: "square.and.arrow.down")
+//                                }
+//                                .padding(0)
+//                            }
+//                            .fileMover(isPresented: $moving, file: csvFile) { result in
+//                                switch result {
+//                                case .success(let file):
+//                                    print(file.absoluteString)
+//                                case .failure(let error):
+//                                    print(error.localizedDescription)
+//                                }
+//                            }
                         }
+                        .padding(.horizontal)
                     }
                 }
                 .frame(height: 150)

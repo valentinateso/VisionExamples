@@ -11,8 +11,6 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
-                NavigationLink(destination: TextRecognitionView(), label: { Text("OCR Text Recognition") })
-                Divider()
                 NavigationLink(destination: LiveFaceDetectionView(), label: { Text("Face Recognition") })
                 Spacer()
             }

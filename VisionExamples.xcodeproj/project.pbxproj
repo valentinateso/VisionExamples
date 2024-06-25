@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		F43D1DD72BD90A8A006D06C2 /* VisionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43D1DD62BD90A8A006D06C2 /* VisionHelper.swift */; };
-		F43D1DDA2BD90D7E006D06C2 /* ObjectDetectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43D1DD92BD90D7E006D06C2 /* ObjectDetectionView.swift */; };
-		F43D1DDC2BD90DE2006D06C2 /* YOLOv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F43D1DDB2BD90DE2006D06C2 /* YOLOv3.mlmodel */; };
-		F449138A2B9877710003DF6B /* TextRecognitionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44913892B9877710003DF6B /* TextRecognitionView.swift */; };
 		F45E870F2B971E3A00B8A961 /* VisionExamplesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45E870E2B971E3A00B8A961 /* VisionExamplesApp.swift */; };
 		F45E87112B971E3A00B8A961 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45E87102B971E3A00B8A961 /* ContentView.swift */; };
 		F45E87132B971E3B00B8A961 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F45E87122B971E3B00B8A961 /* Assets.xcassets */; };
@@ -21,10 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D7932A7E2C2ABDF600FDEEDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F43D1DD62BD90A8A006D06C2 /* VisionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionHelper.swift; sourceTree = "<group>"; };
-		F43D1DD92BD90D7E006D06C2 /* ObjectDetectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectDetectionView.swift; sourceTree = "<group>"; };
-		F43D1DDB2BD90DE2006D06C2 /* YOLOv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = YOLOv3.mlmodel; path = ../../../Downloads/YOLOv3.mlmodel; sourceTree = "<group>"; };
-		F44913892B9877710003DF6B /* TextRecognitionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognitionView.swift; sourceTree = "<group>"; };
 		F45E870B2B971E3A00B8A961 /* VisionExamples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VisionExamples.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F45E870E2B971E3A00B8A961 /* VisionExamplesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionExamplesApp.swift; sourceTree = "<group>"; };
 		F45E87102B971E3A00B8A961 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -55,26 +50,9 @@
 			path = FaceDetection;
 			sourceTree = "<group>";
 		};
-		F43D1DD82BD90D39006D06C2 /* ObjectDetection */ = {
-			isa = PBXGroup;
-			children = (
-				F43D1DD92BD90D7E006D06C2 /* ObjectDetectionView.swift */,
-			);
-			path = ObjectDetection;
-			sourceTree = "<group>";
-		};
-		F44913882B9877350003DF6B /* TextDetection */ = {
-			isa = PBXGroup;
-			children = (
-				F44913892B9877710003DF6B /* TextRecognitionView.swift */,
-			);
-			path = TextDetection;
-			sourceTree = "<group>";
-		};
 		F45E87022B971E3A00B8A961 = {
 			isa = PBXGroup;
 			children = (
-				F43D1DDB2BD90DE2006D06C2 /* YOLOv3.mlmodel */,
 				F45E870D2B971E3A00B8A961 /* VisionExamples */,
 				F45E870C2B971E3A00B8A961 /* Products */,
 			);
@@ -91,12 +69,11 @@
 		F45E870D2B971E3A00B8A961 /* VisionExamples */ = {
 			isa = PBXGroup;
 			children = (
+				D7932A7E2C2ABDF600FDEEDC /* Info.plist */,
 				F45E870E2B971E3A00B8A961 /* VisionExamplesApp.swift */,
 				F45E87102B971E3A00B8A961 /* ContentView.swift */,
 				F4A9D8642B9721DD00C53B44 /* Helper */,
 				F415E08C2BA335E000522E79 /* FaceDetection */,
-				F43D1DD82BD90D39006D06C2 /* ObjectDetection */,
-				F44913882B9877350003DF6B /* TextDetection */,
 				F45E87122B971E3B00B8A961 /* Assets.xcassets */,
 				F45E87142B971E3B00B8A961 /* Preview Content */,
 			);
@@ -192,11 +169,8 @@
 			files = (
 				F4A9D8662B9721F000C53B44 /* ImagePicker.swift in Sources */,
 				F43D1DD72BD90A8A006D06C2 /* VisionHelper.swift in Sources */,
-				F449138A2B9877710003DF6B /* TextRecognitionView.swift in Sources */,
-				F43D1DDC2BD90DE2006D06C2 /* YOLOv3.mlmodel in Sources */,
 				F45E87112B971E3A00B8A961 /* ContentView.swift in Sources */,
 				F4FAB05C2BCEBC8600061293 /* CameraView.swift in Sources */,
-				F43D1DDA2BD90D7E006D06C2 /* ObjectDetectionView.swift in Sources */,
 				F45E870F2B971E3A00B8A961 /* VisionExamplesApp.swift in Sources */,
 				F4FAB05E2BCEC9B100061293 /* LiveFaceDetectionView.swift in Sources */,
 			);
@@ -332,10 +306,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"VisionExamples/Preview Content\"";
-				DEVELOPMENT_TEAM = TBVU37NRUM;
+				DEVELOPMENT_TEAM = BRR7885TWH;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = VisionExamples/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Saving video";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -362,10 +338,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"VisionExamples/Preview Content\"";
-				DEVELOPMENT_TEAM = TBVU37NRUM;
+				DEVELOPMENT_TEAM = BRR7885TWH;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = VisionExamples/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Saving video";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

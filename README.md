@@ -1,16 +1,8 @@
 # iOS Vision Framework Examples
-This is a SwiftUI based iOS application that demonstrates the different examples of Vision Frameworks usages.
+This is a SwiftUI based iOS application that demonstrates Live Face Detection of Vision Frameworks usages.
 
 ## Features
-- Object Detection using Apple YOLOv3 pre-trained model
-- Text Recognition in Images
-- Live Face Detection
-
-## How to use:
-- Download the project
-- Download the YOLOv3 model from below reference.
-- Drag the model into project.
-- Run the App.
+- Live Face Detection (Saving mov and csv file)
 
 ## Library used:
 - SwiftUI

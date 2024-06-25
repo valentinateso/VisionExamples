@@ -13,9 +13,18 @@ import Vision
 struct CameraView: UIViewRepresentable {
     typealias UIViewType = VideoPreview
     @Binding var startCamera: Bool
+    @Binding var csvFile: URL?
     let frame: CGRect
     
-    class VideoPreview: UIView, AVCaptureVideoDataOutputSampleBufferDelegate {
+    class VideoPreview: UIView, AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureFileOutputRecordingDelegate {
+        
+        func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: (any Error)?) {
+            print("FINISHED \(error?.localizedDescription ?? "NO ERR")")
+            if error == nil {
+                UISaveVideoAtPathToSavedPhotosAlbum(outputFileURL.path(), nil, nil, nil)
+            }
+        }
+        
         ///Camera Session
         var session: AVCaptureSession?
         
@@ -24,6 +33,11 @@ struct CameraView: UIViewRepresentable {
         
         ///Layer to draw detected face rectangle
         private var faceLayers: [CAShapeLayer] = []
+        
+        var movieOutput = AVCaptureMovieFileOutput()
+        
+        var csvFileUrl: URL? = nil
+        var startTime: Double? = nil
         
         init() {
             self.session = AVCaptureSession()
@@ -64,6 +78,30 @@ struct CameraView: UIViewRepresentable {
                 }
             }
         }
+        func appendLineToURL(fileURL: URL, line: String) {
+            do {
+                
+                if FileManager.default.fileExists(atPath: fileURL.path) {
+                    // Create a file handle
+                    let fileHandle = try FileHandle(forWritingTo: fileURL)
+                    
+                    // Move to the end of the file
+                    fileHandle.seekToEndOfFile()
+                    
+                    // Convert the line to data and write it to the file
+                    if let data = "\(line)\n".data(using: .utf8) {
+                        fileHandle.write(data)
+                    }
+                    
+                    // Close the file handle
+                    fileHandle.closeFile()
+                } else {
+                    try "\(line)\n".write(to: fileURL, atomically: true, encoding: .utf8)
+                }
+            } catch {
+                print("Error writing to file: \(error.localizedDescription)")
+            }
+        }
         
         func configureSession() {
             ///Select the Front Camera as device and create input.
@@ -99,6 +137,13 @@ struct CameraView: UIViewRepresentable {
                 print("couldn't add the device output to session.")
             }
             
+            if session.canAddOutput(movieOutput) {
+                session.addOutput(movieOutput)
+            } else {
+                print("Can't add movie output.")
+                return
+            }
+            
             ///Update the Preview Layer
             let previewLayer = AVCaptureVideoPreviewLayer(session: session)
             self.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.5)
@@ -106,12 +151,51 @@ struct CameraView: UIViewRepresentable {
             self.layer.addSublayer(previewLayer)
             self.previewLayer = previewLayer
             
+            
+        }
+        
+        func stopSession() {
+            self.session?.stopRunning()
+            DispatchQueue.main.async {
+                self.movieOutput.stopRecording()
+            }
+        }
+        
+        func startSession() {
+            
             ///Start the session
             DispatchQueue.global(qos: .background).async {
+                
+                guard let session = self.session else {
+                    print("session not initiated")
+                    return
+                }
                 session.startRunning()
+                
+                let fileManager = FileManager.default
+                
+                // Get the URLs for the specified directory
+                let paths = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
+                
+                let timestamp = NSDate.timeIntervalSinceReferenceDate
+                let movieFileUrl = paths[0].appendingPathComponent("output-\(timestamp).mov")
+                try? fileManager.removeItem(at: movieFileUrl)
+                
+                self.csvFileUrl = paths[0].appendingPathComponent("output-\(timestamp).csv")
+                if let csvFileUrl = self.csvFileUrl {
+                    try? fileManager.removeItem(at: csvFileUrl)
+                }
+                
+                self.movieOutput.startRecording(to: movieFileUrl, recordingDelegate: self)
+                if let csvFileUrl = self.csvFileUrl {
+                    self.startTime = self.session?.synchronizationClock?.time.seconds
+                    self.appendLineToURL(fileURL: csvFileUrl, line: "timestamp,yaw,pitch,roll")
+                }
+                
+                
             }
             
-            print("AVCapture session is running now....\(previewLayer.frame)")
+            print("AVCapture session is running now....\(String(describing: self.previewLayer?.frame))")
         }
         
         ///Capture the video sample buffer and do the face detection
@@ -152,7 +236,28 @@ struct CameraView: UIViewRepresentable {
         }
         
         private func handleFaceDetectionObservation(_ observations: [VNFaceObservation]) {
+            print("OBSERVATIONS: \(observations.count)")
+            
+            let offset = ((self.session?.synchronizationClock?.time.seconds ?? -1.0) - (self.startTime ?? 0.0))
+            
+            if observations.count == 0 {
+                if let csvFileUrl = self.csvFileUrl {
+                    let line = "\(offset),,"
+                    self.appendLineToURL(fileURL: csvFileUrl, line: line)
+                }
+                return
+            }
+            
             for observation in observations {
+                let yaw = observation.yaw ?? 0
+                let pitch = observation.pitch ?? 0
+                let roll = observation.roll ?? 0
+                
+                let line = "\(offset),\(yaw),\(pitch),\(roll)"
+                if let csvFileUrl = self.csvFileUrl {
+                    self.appendLineToURL(fileURL: csvFileUrl, line: line)
+                }
+
                 if let previewLayer = self.previewLayer {
                     let faceRectConverted = previewLayer.layerRectConverted(fromMetadataOutputRect: observation.boundingBox)
                     let faceRectPath = CGPath(rect: faceRectConverted, transform: nil)
@@ -175,17 +280,17 @@ struct CameraView: UIViewRepresentable {
         videoPreview.backgroundColor = .black
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.27) {
             videoPreview.checkCameraPermission()
+            self.csvFile = videoPreview.csvFileUrl
         }
         return videoPreview
     }
     
     func updateUIView(_ uiView: VideoPreview, context: UIViewRepresentableContext<CameraView>) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-            if let viewSession = uiView.session {
-                print("camera: \(startCamera)")
-                DispatchQueue.global(qos: .background).async {
-                    _ = startCamera ? viewSession.startRunning() : viewSession.stopRunning()
-                }
+            print("camera: \(startCamera)")
+            DispatchQueue.global(qos: .background).async {
+                _ = startCamera ? uiView.startSession() : uiView.stopSession()
+                self.csvFile = uiView.csvFileUrl
             }
         }
     }
